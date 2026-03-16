@@ -155,7 +155,8 @@ airbnb/<br>
 ├── utils/                  # Helper functions (e.g., path core modules)<br>
 ├── public/                 # Static assets (Tailwind CSS, images)<br>
 ├── server.js               # Application entry point & Express setup<br>
-└── package.json            # Project dependencies and scripts<br>
+└── package.json            # Project dependencies and scripts
+
 
 ##🔧 Getting Started
 
