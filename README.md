@@ -147,15 +147,15 @@ The application follows the Model-View-Controller (MVC) architecture pattern for
 
 ### Directory Structure
 
-airbnb/
-├── models/                 # Data models (Home, Favourites - MySQL logic)
-├── controllers/            # Business logic layer (handling CRUD operations)
-├── views/                  # Presentation layer (EJS templates & partials)
-├── routes/                 # URL routing layer (storeRouter, hostRouter)
-├── utils/                  # Helper functions (e.g., path core modules)
-├── public/                 # Static assets (Tailwind CSS, images)
-├── server.js               # Application entry point & Express setup
-└── package.json            # Project dependencies and scripts
+airbnb/<br>
+├── models/                 # Data models (Home, Favourites - MySQL logic)<br>
+├── controllers/            # Business logic layer (handling CRUD operations)<br>
+├── views/                  # Presentation layer (EJS templates & partials)<br>
+├── routes/                 # URL routing layer (storeRouter, hostRouter)<br>
+├── utils/                  # Helper functions (e.g., path core modules)<br>
+├── public/                 # Static assets (Tailwind CSS, images)<br>
+├── server.js               # Application entry point & Express setup<br>
+└── package.json            # Project dependencies and scripts<br>
 
 ##🔧 Getting Started
 
