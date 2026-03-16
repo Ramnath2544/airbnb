@@ -147,8 +147,7 @@ The application follows the Model-View-Controller (MVC) architecture pattern for
 
 ### Directory Structure
 
-```text
-airbnb-clone/
+airbnb/
 ├── models/                 # Data models (Home, Favourites - MySQL logic)
 ├── controllers/            # Business logic layer (handling CRUD operations)
 ├── views/                  # Presentation layer (EJS templates & partials)
