@@ -1,212 +1,176 @@
-# 🏡 Full‑Stack Airbnb Style
+# Full-Stack Airbnb Style App
 
-A modern **full-stack property booking web application** built with **EJS templating (frontend)** and **Node.js + Express + MySQL (backend)**.  
-Supports **browsing homes**, managing **favourites**, **bookings**, and comprehensive **host management** (add, edit, and delete listings) with a robust MVC architecture.
+A full-stack property listing and booking-style web application built with **Node.js**, **Express**, **EJS**, **Tailwind CSS**, and **MySQL**.
 
----
+The app uses an MVC structure with separate controllers, models, routes, EJS views, and static assets. Users can browse homes, view details, save favourites, and view bookings. Hosts can add, edit, and delete home listings.
 
-**<h2>Table of Contents</h2>**
+## Features
 
-### •	 <ins>Features</ins>
+### User Pages
 
-### •	 <ins>Documentation</ins>
+- Browse all homes on the home page and homes list page.
+- View details for a single home.
+- Add homes to a favourites list.
+- Remove homes from favourites.
+- View a bookings page.
+- See a custom 404 page for unknown routes.
 
-### •	 <ins>Usage</ins>
+### Host Pages
 
-### •	 <ins>Tech Stack</ins>
+- Add a new home listing.
+- View all host listings.
+- Edit an existing home listing.
+- Delete a home listing.
 
-### •	 <ins>Project Structure</ins>
+### Architecture
 
-### •	 <ins>Getting Started</ins>
+- MVC structure:
+  - `controllers/` handles request logic.
+  - `models/` handles data access.
+  - `routes/` defines Express routes.
+  - `views/` contains EJS templates and partials.
+  - `public/` contains compiled CSS and image assets.
+- Server-side rendering with EJS.
+- Tailwind CSS for styling.
+- MySQL database access through `mysql2`.
 
-### •	 <ins>Environment Variables</ins>
+## Tech Stack
 
-### •	 <ins>Commit History Highlights</ins>
+### Frontend
 
-### •	 <ins>Future Enhancements</ins>
+- HTML5
+- EJS templates
+- Tailwind CSS
+- Static image assets
 
-### •	 <ins>Contributing</ins>
+### Backend
 
-### •	 <ins>Contact</ins>
+- Node.js
+- Express.js 5
+- CommonJS modules
+- Express URL-encoded body parsing
 
----
+### Data Storage
 
-## ✨ Features
+- MySQL for home listing records.
+- JSON file storage for favourites at `DB/data/favourite.json`.
 
-### 🖥️ Frontend (EJS + Tailwind CSS)
-- Server-side rendered views using **EJS templates** and reusable **partials** for consistent layouts.
-- Fully styled responsive user interface utilizing **Tailwind CSS**.
-- Intuitive navigation across Home, Properties, Favourites, and Bookings.
-- Dynamic property details pages with rating images and descriptive UI.
-- Custom **404 Error pages** for invalid paths.
+### Development Tools
 
-### ⚙️ Backend (Node.js + Express)
-- RESTful routing implemented via **Express.js**.
-- Strict **MVC (Model-View-Controller)** architecture to separate data logic from routing.
-- Dedicated routers for different user roles:
-  - `storeRouter`: For user-facing pages (index, homes, favourites, bookings).
-  - `hostRouter`: For property management (add, edit, delete homes).
-- Request body parsing and middleware integration for seamless data flow.
+- npm
+- Nodemon
+- Tailwind CSS CLI
+- PostCSS
+- Autoprefixer
 
-### 📦 Persistence & Database
-- Fully integrated with **MySQL** for robust, relational data persistence.
-- Models designed for `Home`, `Favourites`, and `Bookings`.
-- Automated cascading deletes (e.g., deleting a home automatically removes it from favourites).
-- *Legacy Support:* Originally built with File System (JSON) persistence before successfully migrating to a SQL database.
+## Project Structure
 
-### 🏠 Property & Booking Management
-- **Host Dashboard:** Create new home listings, populate edit-home forms with existing data, and handle edit/delete requests.
-- **User Dashboard:** View detailed home listings, save homes to a favourites list, and track requested bookings.
+```text
+airbnb/
+|-- README.md
+`-- DB/
+    |-- app.js
+    |-- package.json
+    |-- controllers/
+    |-- data/
+    |-- models/
+    |-- public/
+    |-- routes/
+    |-- utils/
+    `-- views/
+```
 
----
+## Routes
 
-## Documentation
-Here's a list of all the primary routes you can use with this application and what each path does.
+### Store Routes
 
-**Store / User Routes**
-- [GET /](#get-)
-- [GET /homes](#get-homes)
-- [GET /homes/:id](#get-homesid)
-- [GET /favourites](#get-favourites)
-- [POST /favourites](#post-favourites)
-- [GET /bookings](#get-bookings)
+| Method | Path | Description |
+| --- | --- | --- |
+| GET | `/` | Render the landing page. |
+| GET | `/homes` | Render all available homes. |
+| GET | `/homes/:homeId` | Render details for one home. |
+| GET | `/favourites` | Render saved favourite homes. |
+| POST | `/favourites` | Add a home to favourites. |
+| POST | `/favourites/delete/:homeId` | Remove a home from favourites. |
+| GET | `/bookings` | Render the bookings page. |
 
-**Host / Management Routes**
-- [GET /host/add-home](#get-hostadd-home)
-- [POST /host/add-home](#post-hostadd-home)
-- [GET /host/edit-home/:id](#get-hostedit-homeid)
-- [POST /host/edit-home](#post-hostedit-home)
-- [POST /host/delete-home](#post-hostdelete-home)
-  
-### GET /
-Renders the landing/index page of the application.
+### Host Routes
 
-### GET /homes
-Renders a list of all available property listings.
+| Method | Path | Description |
+| --- | --- | --- |
+| GET | `/host/add-home` | Render the add-home form. |
+| POST | `/host/add-home` | Create a home listing. |
+| GET | `/host/host-home-list` | Render host-managed listings. |
+| GET | `/host/edit-home/:homeId` | Render the edit form for one home. |
+| POST | `/host/edit-home` | Update a home listing. |
+| POST | `/host/delete-home/:homeId` | Delete a home listing. |
 
-### GET /homes/:id
-Displays detailed information, rating images, and specifics for a single home.
+## Getting Started
 
-### GET /favourites
-Renders the user's list of saved/favourite properties.
+### 1. Open the app folder
 
-### POST /favourites
-Adds a selected property to the user's favourites database.
+```bash
+cd DB
+```
 
-### GET /bookings
-Renders the user's active property bookings.
+### 2. Install dependencies
 
-### GET /host/add-home
-Displays the form for a host to list a new property.
-
-### POST /host/add-home
-Parses the request body and creates a new home record in the MySQL database.
-
-### GET /host/edit-home/:id
-Displays the edit skeleton pre-populated with the existing home data for modification.
-
-### POST /host/edit-home
-Submits and updates the modified property details in the database.
-
-### POST /host/delete-home
-Deletes a property from the database and automatically cleans up related records (like favourites).
-
----
-
-## Usage
-- **Users** can browse available homes on the main page, view specific property details, and save items to their favourites.
-- **Users** can book properties and view their booking history.
-- **Hosts** can navigate to the host dashboard to add new properties.
-- **Hosts** can click the edit or delete buttons on their listings to manage property data safely.
-
----
-
-## 🚀 Tech Stack
-
-**Frontend:**  
-- HTML5 / CSS3
-- Tailwind CSS (Utility-first styling)
-- EJS (Embedded JavaScript Templating)
-
-**Backend:**  
-- Node.js (CommonJS modules)
-- Express.js (Routing, Middleware, parsing)
-- MySQL (Relational Database)
-
-**Other Tools:**  
-- Nodemon (Development hot-reloading)
-- npm (Package management)
-
----
-
-## 📂 Project Structure
-
-### Overview
-
-The application follows the Model-View-Controller (MVC) architecture pattern for better code organization, maintainability, and separation of concerns.
-
-### Directory Structure
-
-airbnb/<br>
-├── models/                 # Data models (Home, Favourites - MySQL logic)<br>
-├── controllers/            # Business logic layer (handling CRUD operations)<br>
-├── views/                  # Presentation layer (EJS templates & partials)<br>
-├── routes/                 # URL routing layer (storeRouter, hostRouter)<br>
-├── utils/                  # Helper functions (e.g., path core modules)<br>
-├── public/                 # Static assets (Tailwind CSS, images)<br>
-├── server.js               # Application entry point & Express setup<br>
-└── package.json            # Project dependencies and scripts
-
-
-##🔧 Getting Started
-
-### 1. Install dependencies
-
+```bash
 npm install
+```
 
-### 2. Setup Tailwind CSS (if building custom styles)
+### 3. Configure MySQL
 
-npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch
+The database connection is currently configured in `DB/utils/databaseUtil.js`:
 
-### 3. Run the development server
+```js
+host: "localhost",
+user: "root",
+password: "root",
+database: "airbnb"
+```
 
-npm run dev
-# or
-nodemon server.js
+Create a MySQL database named `airbnb`, then create a `homes` table with columns used by the app:
 
-The server will typically start on http://localhost:3000 (or your configured port).
+```sql
+CREATE DATABASE IF NOT EXISTS airbnb;
+USE airbnb;
 
-##🌐 Environment Variables
+CREATE TABLE IF NOT EXISTS homes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  houseName VARCHAR(255) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  rating DECIMAL(2, 1) NOT NULL,
+  photoUrl VARCHAR(500) NOT NULL,
+  description TEXT
+);
+```
 
-| Variable    | Description             | Example      |
-| ----------- | ----------------------- | ------------ |
-| PORT        | Server port             | 3000         |
-| DB_HOST     | MySQL Database Host     | localhost    |
-| DB_USER     | MySQL Database username | root         |
-| DB_PASSWORD | MySQL Database password | secret       |
-| DB_NAME     | MySQL Database name     | airbnb_clone |
+### 4. Run the app
 
-## 📈 Commit History Highlights
-- **Foundation:** Started with raw Node.js HTTP servers, manual chunk buffering, and request redirection.
-- **Framework Adoption:** Integrated Express.js for routing, middleware parsing, and modularized code.
-- **UI/UX:** Implemented EJS templating with partials and added Tailwind CSS for a modern design.
-- **Architecture:** Transitioned to an MVC structure by moving data logic out of routes into controllers.
-- **Data Evolution:** Built a complete local File System (JSON) CRUD before migrating the entire application to a production-ready MySQL database.
+```bash
+npm start
+```
 
----
+This starts Nodemon for `app.js` and starts Tailwind in watch mode.
 
-## 🛠️ Future Enhancements
-- 🔐 User authentication (Sign Up / Login / JWT).
-- 👤 Role-based authorization (distinct Host vs. Guest accounts).
-- ⭐ User reviews and dynamic rating calculations.
-- 💳 Checkout and payment gateway integration for bookings.
+Open:
 
----
+```text
+http://localhost:3000
+```
 
-## 🤝 Contributing
-Contributions are welcome. Please fork the repository and open a pull request. For major changes, open an issue first to discuss what you would like to change.
+## Useful Scripts
 
----
+| Command | Description |
+| --- | --- |
+| `npm start` | Start the Express app with Nodemon and Tailwind watch mode. |
+| `npm run tailwind` | Rebuild `public/output.css` from `views/input.css` in watch mode. |
 
-## 📧 Contact
-For support or inquiries, please open an issue or email: [ramnath2544@gmail.com](mailto:ramnath2544@gmail.com).
+## Notes
+
+- The Express server entry point is `DB/app.js`.
+- The server listens on port `3000`.
+- The app does not currently read environment variables; database credentials are hardcoded in `DB/utils/databaseUtil.js`.
+- The `npm test` script is still a placeholder.
